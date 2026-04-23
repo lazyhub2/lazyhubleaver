@@ -1,0 +1,38 @@
+local player = game.Players.LocalPlayer
+
+-- Create GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "Lazy Hub Leaver"
+screenGui.Parent = player.PlayerGui
+screenGui.ResetOnSpawn = false
+
+-- Modern button
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0, 100, 0, 35)
+button.Position = UDim2.new(1, -120, 0, 15)
+button.Text = "Disconnect"  -- Fixed: changed from curly quotes to straight quotes
+button.TextSize = 14
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+button.BorderSizePixel = 0
+button.Font = Enum.Font.GothamMedium
+button.Parent = screenGui
+
+-- Rounded corners
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 6)
+corner.Parent = button
+
+-- Hover effect
+button.MouseEnter:Connect(function()
+    button.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+end)
+
+button.MouseLeave:Connect(function()
+    button.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+end)
+
+-- Click to disconnect
+button.MouseButton1Click:Connect(function()
+    player:Kick("Disconnected")
+end)
